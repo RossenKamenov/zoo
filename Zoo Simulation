@@ -9,7 +9,7 @@ public class Main {
         svetla.assignStaff(savannah);
         simo.assignStaff(jungle);
 
-        Animal lion = new Animal("Kris", "Lion", 5, savannah); // Composition
+        Animal lion = new Animal("Kris", "Lion", 8, savannah); // Composition
         Animal monkey = new Animal("Joro", "Monkey", 2, jungle); // Composition
 
         Zoo zoo = new Zoo();
