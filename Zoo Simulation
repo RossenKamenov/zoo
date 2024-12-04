@@ -1,0 +1,93 @@
+public class Main {
+    public static void main(String[] args) {
+        Habitat savannah = new Habitat("Savannah", 1000, 30);
+        Habitat jungle = new Habitat("Jungle", 800, 25);
+
+        Staff svetla = new Staff("Svetla", "Zookeeper");
+        Staff simo = new Staff("Simo", "Specialist");
+
+        svetla.assignStaff(savannah);
+        simo.assignStaff(jungle);
+
+        Animal lion = new Animal("Kris", "Lion", 5, savannah); // Composition
+        Animal monkey = new Animal("Joro", "Monkey", 2, jungle); // Composition
+
+        Zoo zoo = new Zoo();
+        zoo.addAnimal1(lion);
+        zoo.addAnimal2(monkey);
+
+        lion.eat("Meat", svetla );
+        monkey.eat("Bananas", simo);
+    }
+}
+class Animal {
+    private String name;
+    private String species;
+    private int age;
+    private Habitat habitat; // Composition
+
+    public Animal(String name, String species, int age, Habitat habitat) {
+        this.name = name;
+        this.species = species;
+        this.age = age;
+        this.habitat = habitat;
+    }
+
+    public void eat(String food, Staff staff) {
+        System.out.println(this.name + " the " + this.species + " is fed " + food + " by " + staff.getName());
+    }
+}
+class Habitat {
+    private String type;
+    private int size;
+    private int temperature;
+
+    public Habitat(String type, int size, int temperature) {
+        this.type = type;
+        this.size = size;
+        this.temperature = temperature;
+    }
+
+    public String getType() {
+        return type;
+    }
+}
+class Zoo {
+    private Animal a1, a2, a3, a4;
+
+    public void addAnimal1(Animal a) {
+        this.a1 = a;
+    }
+
+    public void addAnimal2(Animal a) {
+        this.a2 = a;
+    }
+
+    public void addAnimal3(Animal a) {
+        this.a3 = a;
+    }
+
+    public void addAnimal4(Animal a) {
+        this.a4 = a;
+    }
+}
+class Staff {
+    private String name;
+    private String role;
+    private Habitat assignedHabitat; // Association
+
+    public Staff(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
+    public void assignStaff(Habitat habitat) {
+        this.assignedHabitat = habitat;
+        System.out.println(this.name + " is assigned to the " +
+                "" + habitat.getType());
+    }
+
+    public String getName() {
+        return name;
+    }
+}
